@@ -3,6 +3,14 @@ from uuid import UUID
 from datetime import datetime
 
 
+class GoogleAuthRequest(BaseModel):
+    credential: str
+
+
+class TokenResponse(BaseModel):
+    access_token: str
+    token_type: str
+
 
 class WordLLMResponse(BaseModel):
     """Schema used to enforce the OpenAI Structured Output."""

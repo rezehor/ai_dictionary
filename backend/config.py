@@ -58,6 +58,8 @@ class Settings(BaseSettings):
     OPENAI_MODEL: str = "gpt-5.4-mini"
     OPENAI_MAX_TOKENS: int = 2048
 
+    GOOGLE_CLIENT_ID: str
+
 
 @lru_cache
 def get_settings() -> Settings:

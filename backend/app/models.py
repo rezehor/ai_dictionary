@@ -18,7 +18,7 @@ class User(Base):
     email: Mapped[str] = mapped_column(String, unique=True, index=True)
     google_id: Mapped[str] = mapped_column(String, unique=True, index=True)
     full_name: Mapped[str | None] = mapped_column(String, nullable=True)
-    created_at: Mapped[datetime] = mapped_column(DateTime, default=lambda: datetime.now(UTC))
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=lambda: datetime.now(UTC))
 
     words: Mapped[List["Word"]] = relationship(back_populates="owner", cascade="all, delete-orphan")
 
@@ -33,6 +33,6 @@ class Word(Base):
     transcription: Mapped[str] = mapped_column(String)
     short_description: Mapped[str] = mapped_column(String)
     sentences: Mapped[List[str]] = mapped_column(ARRAY(String))
-    created_at: Mapped[datetime] = mapped_column(DateTime, default=lambda: datetime.now(UTC))
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=lambda: datetime.now(UTC))
 
     owner: Mapped["User"] = relationship(back_populates="words")
